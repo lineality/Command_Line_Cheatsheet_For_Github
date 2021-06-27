@@ -10,7 +10,9 @@ $ gh auth login
 ````
 ####Docs
 https://cli.github.com/manual/ 
-https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/managing-email-preferences/setting-your-commit-email-address 
+
+https://docs.github.com/en/github/setting-up-and-managing-your-github-user-acc
+ount/managing-email-preferences/setting-your-commit-email-address 
 
 
 ## Contents:
