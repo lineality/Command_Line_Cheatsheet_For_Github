@@ -8,7 +8,8 @@ Github CLI resources:
 ```
 $ gh auth login
 ````
-####Docs
+#### Docs
+
 https://cli.github.com/manual/ 
 
 https://docs.github.com/en/github/setting-up-and-managing-your-github-user-acc
