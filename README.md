@@ -1,5 +1,150 @@
 # Github Command Line Cheat Sheet
 
+```
+git fetch origin -p
+git fetch origin --prune
+git branch -D <branch-name>
+```
+
+
+
+1. ssh git clone
+
+2. check to see you are on the correct branch (check often)
+```bash
+$ git branch -a
+```
+
+3. Create a new branch for your changes: You can create a new branch and switch to it using 
+$ git checkout -b name_of_your_new_branch
+
+4. check to see you are on the correct branch (check often)
+```
+$ git branch -a
+```
+
+5. Make your changes: Edit files, create new ones, and so on.
+
+6. Check the status of your changes: This step is optional but recommended. 
+$ git status 
+
+7. "Stage" your changes for commit: 
+$ git add . 
+
+to add all changes,
+
+6. Check the status of your changes: This step is optional but recommended. 
+$ git status 
+
+8. "Commit" your changes and add a descriptive message 
+$ git commit -m "Your message"
+
+9. Push the changes to the new branch on the remote repository: 
+$ git push origin name_of_your_new_branch
+
+10. Create a pull request: You can use the GitHub CLI to create a pull request with 
+```
+$ gh pr create
+```
+You'll be prompted for details like the pull request title and body, and which branch you want to merge your changes into.
+
+# To compare branches (and make file of compare text)
+
+1. compare to branch
+- if you are on branch1
+```bash
+git diff branch2
+```
+or
+```bash
+git diff branch1 branch2
+```
+or
+```bash
+git diff branch1..branch2
+```
+
+1. save file
+```bash
+git diff branch1..branch2 > diff_output.txt
+```
+
+# To pull code from one branch to another:
+
+1. update all repo files
+```
+$ git fetch origin
+```
+
+2. check to see you are on the correct branch (check often)
+```
+$ git branch
+$ git status
+```
+
+3. move to branch you want to update (if not there already)
+```
+$ git checkout OUT_OF_DATE_BRANCH
+```
+4. pull with 'rebase'
+```
+$ git pull origin UPDATED_BRANCH --rebase
+```
+4. push
+```
+$ git push origin OUT_OF_DATE_BRANCH --force
+```
+
+1. remove or delete a branch:
+```bash
+$ git branch -D <branch-name>
+```
+
+# To pull code from one branch to another:
+
+1. check to see you are on the correct branch (check often)
+```
+$ git branch -a
+```
+
+2. go to branch to want to put code into:
+$ git checkout <branch_name>
+
+
+3. Pull the latest code from the branch
+This command will fetch the latest code from the specified branch and merge it into your currently checked out branch.
+$ git pull origin <branch_name>
+
+
+/////////////////////////////////////
+
+# To Reset a broken branch to a good-target branch:
+- in terms of old-branch (to be updated) new branch (current-code) 
+
+## 1 Fetch the Latest Data from the Remote Repository:
+# This updates information about all remote branches, 
+# including 'new-branch'
+$ git fetch origin 
+
+## 2 Hard Reset the Old Branch to the State of the Remote New Branch:
+# Ensure you are on the old branch
+$ git checkout old-branch      
+
+# Reset it to match the remote new branch
+$ git reset --hard origin/new-branch  
+
+## 3 Force-Push the Old Branch to the Remote Repository:
+$ git push --force origin old-branch
+$ git checkout old-branch
+$ git rebase --continue
+
+
+
+
+
+
+/////////////////////////
+
 #### Note: 
 As Github changes token and Multi Factor Authentication (MFA) options, you may need to configure your device, terminal, account settings, etc., in order to get the process working:
 
@@ -108,6 +253,16 @@ sometime later make pull request to add that content to master
 
 
 
+
+
+
+
+
+
+
+
+
+
 # Steps to make and submit a new branch (-b makes a new branch):
 
 1. go into or make a directory(folder) on your computer 
@@ -141,27 +296,35 @@ or
 
 ```$ git checkout -b name_of_your_new_branch```
 
-6. add/change item to your new branch on your local computer
+6. check to see you are on the correct branch (check often)
 
-7. Check the status
+```$ git branch -a```
+
+7. add/change item to your new branch on your local computer
+
+8. Check the status
 
 ```$ git status```
 
-8. git add!
+9. git add!
 
 ```$ git add .```
 
-9. git commit!
+10. git commit!
 
 ```$ git commit -m "message"```
 
-10. Push to master
+11. Push to master
 
 ```$ git push origin master```
 
-11. Push to that branch
+12. Push to that branch
 
 ```$ git push origin name_of_your_new_branch```
+
+13. create pull request:
+```$ gh pr create```
+
 
 optional
 
@@ -227,4 +390,49 @@ sometime later make pull request to add that content to master
 
 
 
+# procedure to rebase a branch (in this case preprod):
+
+
+Make sure you have a local checkout available of BOTH branches before rebasing to a branch that may only be remote.
+
+
+1. Follow these steps on a test branch first:
+```bash
+git checkout -b test_branch_xxx
+```
+
+
+2.
+```bash
+git checkout branch_you_want_to_change
+```
+
+
+3.
+```bash
+git rebase target_brach_to_match_history_of
+```
+
+
+4. in vsCode, manually fix merge conflicts
+which will be notated/annotated by the rebase process starting
+
+
+5.
+```bash
+git add .
+git rebase --continue
+```
+
+
+6. repeat steps 4,5 if needed
+
+
+7. do unix-diff and git diff to check
+
+
+8.
+```bash
+git push --force-with-lease origin branch_you_want_to_change
+```
 
