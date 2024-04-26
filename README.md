@@ -390,7 +390,7 @@ sometime later make pull request to add that content to master
 
 
 
-# procedure to rebase a branch (in this case preprod):
+# procedure to rebase a branch 
 
 
 Make sure you have a local checkout available of BOTH branches before rebasing to a branch that may only be remote.
